@@ -97,8 +97,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Factory\AdminFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
+    <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Views\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

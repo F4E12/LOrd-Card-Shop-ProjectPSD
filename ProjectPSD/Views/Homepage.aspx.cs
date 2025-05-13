@@ -4,6 +4,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ProjectPSD.Models;
+using ProjectPSD.Controller;
+
 
 namespace ProjectPSD.Views
 {
@@ -22,20 +24,17 @@ namespace ProjectPSD.Views
                     string username = cookie.Values["Username"];
                     string password = cookie.Values["Password"];
 
-                    using (CardShopEntities db = new CardShopEntities())
+                    User userr = CustomerController.Login(username, password);
+                    if (userr != null)
                     {
-                        var userr = db.Users.FirstOrDefault(u => u.UserName == username && u.UserPassword == password);
-                        if (userr != null)
-                        {
-                            Session["User"] = userr;
-                            Session["Role"] = userr.UserRole;
-                            Session["UserID"] = userr.UserID;
-                        }
-                        else
-                        {
-                            Response.Redirect("Login.aspx");
-                            return;
-                        }
+                        Session["User"] = userr;
+                        Session["Role"] = userr.UserRole;
+                        Session["UserID"] = userr.UserID;
+                    }
+                    else
+                    {
+                        Response.Redirect("Login.aspx");
+                        return;
                     }
                 }
                 else

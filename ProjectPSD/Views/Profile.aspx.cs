@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ProjectPSD.Controller;
 using ProjectPSD.Factory;
 using ProjectPSD.Models;
 using ProjectPSD.Repository;
@@ -28,38 +29,36 @@ namespace ProjectPSD.Views
                 if (user.UserRole == "Customer")
                 {
                     NavbarPH.Controls.Add(new LiteralControl($@"
-                <style>
-                    .navbar a {{
-                        margin-right: 15px;
-                        color: black;
-                        text-decoration: none;
-                        font-weight: bold;
-                        font-size: 18px;
-                    }}
-
-                    .navbar a:hover {{
-                        text-decoration: underline;
-                    }}
-
-                    .navbar a.active {{
-                        color: blue;
-                        text-decoration: underline;
-                        font-weight: bold;
-                    }}
-                </style>
-                <div class='navbar'>
-                    <a href='Homepage.aspx' class='{(currentPage == "Homepage.aspx" ? "active" : "")}'>HOME</a>
-                    <a href='OrderCard.aspx' class='{(currentPage == "OrderCard.aspx" ? "active" : "")}'>ORDERCARD</a>
-                    <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>
-                    <a href='History.aspx' class='{(currentPage == "History.aspx" ? "active" : "")}'>HISTORY</a>
-                    <a href='Logout.aspx' class='{(currentPage == "Logout.aspx" ? "active" : "")}'>LOGOUT</a>
-                    <a href='Cart.aspx' class='{(currentPage == "Cart.aspx" ? "active" : "")}'>CART</a>
-                </div>
-            "));
+                    <style>
+                        .navbar a {{
+                            margin-right: 15px;
+                            color: black;
+                            text-decoration: none;
+                            font-weight: bold;
+                            font-size: 18px;
+                        }}
+                        .navbar a:hover {{
+                            text-decoration: underline;
+                        }}
+                        .navbar a.active {{
+                            color: blue;
+                            text-decoration: underline;
+                            font-weight: bold;
+                        }}
+                    </style>
+                    <div class='navbar'>
+                        <a href='Homepage.aspx' class='{(currentPage == "Homepage.aspx" ? "active" : "")}'>HOME</a>
+                        <a href='OrderCard.aspx' class='{(currentPage == "OrderCard.aspx" ? "active" : "")}'>ORDERCARD</a>
+                        <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>
+                        <a href='History.aspx' class='{(currentPage == "History.aspx" ? "active" : "")}'>HISTORY</a>
+                        <a href='Logout.aspx' class='{(currentPage == "Logout.aspx" ? "active" : "")}'>LOGOUT</a>
+                        <a href='Cart.aspx' class='{(currentPage == "Cart.aspx" ? "active" : "")}'>CART</a>
+                    </div>
+                "));
                 }
 
                 int userId = (int)Session["UserID"];
-                var userData = CustomerRepository.GetUserById(userId);
+                var userData = CustomerController.GetUserById(userId);
 
                 if (userData != null)
                 {
@@ -80,7 +79,7 @@ namespace ProjectPSD.Views
             }
 
             int userId = (int)Session["UserID"];
-            var user = CustomerRepository.GetUserById(userId);
+            var user = CustomerController.GetUserById(userId);
 
             string username = txtUsername.Text.Trim();
             string email = txtEmail.Text.Trim();
@@ -90,27 +89,10 @@ namespace ProjectPSD.Views
             string newPassword = txtNewPassword.Text.Trim();
             string confirmPassword = txtConfirmPassword.Text.Trim();
 
-            if (username.Length < 5 || username.Length > 30 || !System.Text.RegularExpressions.Regex.IsMatch(username, @"^[A-Za-z ]+$"))
+            string validationMessage = CustomerController.ValidateUserProfile(username, email, password, gender);
+            if (validationMessage != null)
             {
-                lblMessage.Text = "Username must be 5-30 characters and alphabet only.";
-                return;
-            }
-
-            if (!email.Contains("@"))
-            {
-                lblMessage.Text = "Email must contain '@'.";
-                return;
-            }
-
-            if (password.Length < 8 || !System.Text.RegularExpressions.Regex.IsMatch(password, @"^[A-Za-z0-9]+$"))
-            {
-                lblMessage.Text = "Password must be at least 8 alphanumeric characters.";
-                return;
-            }
-
-            if (string.IsNullOrEmpty(gender))
-            {
-                lblMessage.Text = "Please select a gender.";
+                lblMessage.Text = validationMessage;
                 return;
             }
 
@@ -122,15 +104,10 @@ namespace ProjectPSD.Views
                     return;
                 }
 
-                if (newPassword.Length < 8 || !System.Text.RegularExpressions.Regex.IsMatch(newPassword, @"^[A-Za-z0-9]+$"))
+                string passwordValidation = CustomerController.ValidatePassword(newPassword, confirmPassword);
+                if (passwordValidation != null)
                 {
-                    lblMessage.Text = "New password must be at least 8 alphanumeric characters.";
-                    return;
-                }
-
-                if (newPassword != confirmPassword)
-                {
-                    lblMessage.Text = "New password and confirmation do not match.";
+                    lblMessage.Text = passwordValidation;
                     return;
                 }
 
@@ -141,7 +118,7 @@ namespace ProjectPSD.Views
             user.UserEmail = email;
             user.UserGender = gender;
 
-            CustomerRepository.UpdateUser(user);
+            CustomerController.UpdateUser(user);
             lblMessage.ForeColor = System.Drawing.Color.Green;
             lblMessage.Text = "Profile updated successfully.";
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ProjectPSD.Controller;
 using ProjectPSD.Factory;
 using ProjectPSD.Models;
 
@@ -35,42 +36,40 @@ namespace ProjectPSD.Views
             string username = UsernameTb.Text;
             string password = PasswordTb.Text;
 
-            using (CardShopEntities db = new CardShopEntities())
+            var user = CustomerController.Login(username, password);
+
+
+            if (user != null)
             {
-                var user = db.Users.FirstOrDefault(u => u.UserName == username && u.UserPassword == password);
+                Session["User"] = user;
+                Session["Role"] = user.UserRole;
+                Session["UserID"] = user.UserID;
 
-                if (user != null)
+                if (RememberMeCb.Checked)
                 {
-                    Session["User"] = user;
-                    Session["Role"] = user.UserRole;
-                    Session["UserID"] = user.UserID;
-
-                    if (RememberMeCb.Checked)
-                    {
-                        HttpCookie cookie = new HttpCookie("RememberMe");
-                        cookie.Values["Username"] = username;
-                        cookie.Values["Password"] = password;
-                        cookie.Expires = DateTime.Now.AddDays(7);
-                        Response.Cookies.Add(cookie);
-                    }
-                    else
-                    {
-                        if (Request.Cookies["RememberMe"] != null)
-                        {
-                            HttpCookie cookie = new HttpCookie("RememberMe");
-                            cookie.Expires = DateTime.Now.AddDays(-1);
-                            Response.Cookies.Add(cookie);
-                        }
-                    }
-
-                    Response.Redirect("~/Views/Homepage.aspx");
+                    HttpCookie cookie = new HttpCookie("RememberMe");
+                    cookie.Values["Username"] = username;
+                    cookie.Values["Password"] = password;
+                    cookie.Expires = DateTime.Now.AddDays(7);
+                    Response.Cookies.Add(cookie);
                 }
                 else
                 {
-                    ErrorMsg.Text = "Invalid username or password!";
-                    ErrorMsg.ForeColor = System.Drawing.Color.Red;
+                    if (Request.Cookies["RememberMe"] != null)
+                    {
+                        HttpCookie cookie = new HttpCookie("RememberMe");
+                        cookie.Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies.Add(cookie);
+                    }
                 }
+
+                Response.Redirect("~/Views/Homepage.aspx");
+            }
+            else
+            {
+                ErrorMsg.Text = "Invalid username or password!";
+                ErrorMsg.ForeColor = System.Drawing.Color.Red;
             }
         }
+        }
     }
-}
