@@ -27,7 +27,6 @@ namespace ProjectPSD.Models
         public string CardDesc { get; set; }
         public string CardType { get; set; }
         public bool isFoil { get; set; }
-        public Nullable<int> CartsCartID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\vkdra\Downloads\ProjectPSD\ProjectPSD\ProjectPSD\Models\CardShop.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Michelle Glebova\OneDrive\Documents\GitHub\LOrd-Card-Shop-ProjectPSD\ProjectPSD\Models\CardShop.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
