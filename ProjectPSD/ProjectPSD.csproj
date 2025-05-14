@@ -92,6 +92,7 @@
     </Content>
     <Content Include="Views\Homepage.aspx" />
     <Content Include="Views\Login.aspx" />
+    <Content Include="Views\OrderCard.aspx" />
     <Content Include="Views\Profile.aspx" />
     <Content Include="Views\Register.aspx" />
     <Content Include="Web.config" />
@@ -153,6 +154,13 @@
     </Compile>
     <Compile Include="Views\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderCard.aspx.cs">
+      <DependentUpon>OrderCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\OrderCard.aspx.designer.cs">
+      <DependentUpon>OrderCard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
