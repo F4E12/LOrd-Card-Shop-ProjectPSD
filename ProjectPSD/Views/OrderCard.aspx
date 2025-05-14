@@ -10,15 +10,11 @@
     <form id="form1" runat="server">
         <asp:PlaceHolder ID="NavbarPH" runat="server"></asp:PlaceHolder> <br />
         <div>
-            <asp:GridView ID="gvOrderCard" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="gvOrderCard" runat="server" AutoGenerateColumns="False" OnRowCommand="gvOrderCard_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="CardID" HeaderText="Card ID" SortExpression="CardID"></asp:BoundField>
                     <asp:BoundField DataField="CardName" HeaderText="Card Name" SortExpression="CardName"></asp:BoundField>
                     <asp:BoundField DataField="CardPrice" HeaderText="Card Price" SortExpression="CardPrice"></asp:BoundField>
-                    <asp:BoundField DataField="CardDesc" HeaderText="Card Desc" SortExpression="CardDesc"></asp:BoundField>
-                    <asp:BoundField DataField="CardType" HeaderText="Card Type" SortExpression="CardType"></asp:BoundField>
-                    <asp:BoundField DataField="isFoil" HeaderText="is Foil" SortExpression="isFoil"></asp:BoundField>
-
                     <asp:TemplateField HeaderText="Actions">
                         <ItemTemplate>
                             <asp:Button ID="btnDetail" runat="server" Text="Detail" CommandName="ViewDetail" CommandArgument='<%# Eval("CardID") %>' />
@@ -29,6 +25,7 @@
                     
                 </Columns>
             </asp:GridView>
+
         </div>
     </form>
 </body>

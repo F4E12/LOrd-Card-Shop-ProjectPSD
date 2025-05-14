@@ -62,9 +62,31 @@ namespace ProjectPSD.Views
 
         protected void refreshPage()
         {
-            List<Card> cardList = OrderCardRepository.getAllCards();
+            List<Card> cardList = CardRepository.getAllCards();
             gvOrderCard.DataSource = cardList;
             gvOrderCard.DataBind();
+
+        }
+
+        protected void gvOrderCard_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int cardID;
+            if (int.TryParse(e.CommandArgument.ToString(), out cardID))
+            {
+                if (e.CommandName == "ViewDetail")
+                {
+                    Response.Redirect("CardDetail.aspx?CardID=" + cardID);
+                    refreshPage();
+                }
+                else if (e.CommandName == "AddToCart")
+                {
+
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Invalid Card ID');</script>");
+            }
 
         }
     }
