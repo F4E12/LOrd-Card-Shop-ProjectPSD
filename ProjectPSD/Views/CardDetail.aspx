@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:PlaceHolder ID="NavbarPH" runat="server"></asp:PlaceHolder>
             <h1>Card Detail Page</h1>
             <asp:Label ID="NameDisplay" runat="server" Text="Name: "></asp:Label>
             <asp:Label ID="nameLbl" runat="server"></asp:Label><br />

@@ -78,6 +78,8 @@
       <DependentUpon>CardShop.mdf</DependentUpon>
     </Content>
     <Content Include="Views\CardDetail.aspx" />
+    <Content Include="Views\Cart.aspx" />
+    <Content Include="Views\Checkout.aspx" />
     <Content Include="Views\Logout.aspx" />
     <Content Include="Models\CardShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -97,17 +99,34 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Factory\AdminFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
+    <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Repository\CardRepository.cs" />
+    <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Views\CardDetail.aspx.cs">
       <DependentUpon>CardDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\CardDetail.aspx.designer.cs">
       <DependentUpon>CardDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
