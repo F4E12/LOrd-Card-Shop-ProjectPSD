@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ProjectPSD.Views.Cart" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CartPage.aspx.cs" Inherits="ProjectPSD.Views.Cart" %>
 
 <!DOCTYPE html>
 

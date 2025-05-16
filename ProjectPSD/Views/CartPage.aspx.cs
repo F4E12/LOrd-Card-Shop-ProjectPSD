@@ -51,7 +51,7 @@ namespace ProjectPSD.Views
                         <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>
                         <a href='History.aspx' class='{(currentPage == "History.aspx" ? "active" : "")}'>HISTORY</a>
                         <a href='Logout.aspx' class='{(currentPage == "Logout.aspx" ? "active" : "")}'>LOGOUT</a>
-                        <a href='Cart.aspx' class='{(currentPage == "Cart.aspx" ? "active" : "")}'>CART</a>
+                        <a href='CartPage.aspx' class='{(currentPage == "CartPage.aspx" ? "active" : "")}'>CART</a>
                     </div>
                 "));
                 }
@@ -63,7 +63,7 @@ namespace ProjectPSD.Views
         protected void LoadCart()
         {
             int userId = Convert.ToInt32(Session["UserID"]);
-            var cartData = CartController.GetCartItems(userId);
+            var cartData = CartController.GetAllCartItems(userId);
 
             var displayData = cartData.Select(c => new
             {
