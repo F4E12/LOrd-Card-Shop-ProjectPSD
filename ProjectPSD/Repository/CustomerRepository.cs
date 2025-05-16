@@ -24,15 +24,21 @@ namespace ProjectPSD.Repository
             }
         }
 
-        public static void Register(User newUser)
+        public static bool RegisterUser(User newUser)
         {
+            if (IsUsernameExist(newUser.UserName) || IsEmailExist(newUser.UserEmail))
+            {
+                return false;
+            }
+
             using (var db = new CardShopEntities())
             {
                 db.Users.Add(newUser);
                 db.SaveChanges();
             }
-        }
 
+            return true;
+        }
 
         public static User Login(string username, string password)
         {
@@ -61,6 +67,7 @@ namespace ProjectPSD.Repository
                     existingUser.UserEmail = user.UserEmail;
                     existingUser.UserPassword = user.UserPassword;
                     existingUser.UserGender = user.UserGender;
+                    existingUser.UserDOB = user.UserDOB;
                     db.SaveChanges();
                 }
             }

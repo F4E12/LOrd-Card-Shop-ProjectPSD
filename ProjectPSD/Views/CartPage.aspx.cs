@@ -15,45 +15,10 @@ namespace ProjectPSD.Views
         {
             if (!IsPostBack)
             {
-
                 if (Session["UserID"] == null || Session["User"] == null)
                 {
                     Response.Redirect("Login.aspx");
                     return;
-                }
-
-                User user = (User)Session["User"];
-                string currentPage = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
-
-                if (user.UserRole == "Customer")
-                {
-                    NavbarPH.Controls.Add(new LiteralControl($@"
-                    <style>
-                        .navbar a {{
-                            margin-right: 15px;
-                            color: black;
-                            text-decoration: none;
-                            font-weight: bold;
-                            font-size: 18px;
-                        }}
-                        .navbar a:hover {{
-                            text-decoration: underline;
-                        }}
-                        .navbar a.active {{
-                            color: blue;
-                            text-decoration: underline;
-                            font-weight: bold;
-                        }}
-                    </style>
-                    <div class='navbar'>
-                        <a href='Homepage.aspx' class='{(currentPage == "Homepage.aspx" ? "active" : "")}'>HOME</a>
-                        <a href='OrderCard.aspx' class='{(currentPage == "OrderCard.aspx" ? "active" : "")}'>ORDERCARD</a>
-                        <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>
-                        <a href='History.aspx' class='{(currentPage == "History.aspx" ? "active" : "")}'>HISTORY</a>
-                        <a href='Logout.aspx' class='{(currentPage == "Logout.aspx" ? "active" : "")}'>LOGOUT</a>
-                        <a href='CartPage.aspx' class='{(currentPage == "CartPage.aspx" ? "active" : "")}'>CART</a>
-                    </div>
-                "));
                 }
 
                 LoadCart();

@@ -15,7 +15,38 @@ namespace ProjectPSD.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                for (int year = DateTime.Now.Year; year >= 1950; year--)
+                {
+                    YearDDL.Items.Add(year.ToString());
+                }
 
+                for (int month = 1; month <= 12; month++)
+                {
+                    MonthDDL.Items.Add(new ListItem(new DateTime(2000, month, 1).ToString("MMMM"), month.ToString()));
+                }
+
+                UpdateDayDDL();
+            }
+        }
+
+        protected void MonthOrYearChanged(object sender, EventArgs e)
+        {
+            UpdateDayDDL();
+        }
+
+        private void UpdateDayDDL()
+        {
+            int year = int.Parse(YearDDL.SelectedValue);
+            int month = int.Parse(MonthDDL.SelectedValue);
+            int days = DateTime.DaysInMonth(year, month);
+
+            DayDDL.Items.Clear();
+            for (int day = 1; day <= days; day++)
+            {
+                DayDDL.Items.Add(day.ToString());
+            }
         }
 
         protected void RegisterBtn_Click(object sender, EventArgs e)
@@ -23,20 +54,30 @@ namespace ProjectPSD.Views
             string username = UsernameTb.Text.Trim();
             string email = EmailTb.Text.Trim();
             string password = PasswordTb.Text.Trim();
-            string gender = GenderRbl.SelectedValue;
             string confirmPassword = ConfirmPasswordTb.Text.Trim();
+            string gender = GenderRbl.SelectedValue;
 
-            string validationMessage = CustomerController.ValidateRegisterForm(username, email, password, confirmPassword, gender);
+            int day = int.Parse(DayDDL.SelectedValue);
+            int month = int.Parse(MonthDDL.SelectedValue);
+            int year = int.Parse(YearDDL.SelectedValue);
+            DateTime dob = new DateTime(year, month, day);
+
+            if (dob > DateTime.Now)
+            {
+                ErrorMsg.Text = "Date of Birth cannot be in the future.";
+                return;
+            }
+
+            string validationMessage = CustomerController.ValidateRegisterForm(username, email, password, confirmPassword, gender, dob);
             if (validationMessage != null)
             {
                 ErrorMsg.Text = validationMessage;
                 return;
             }
 
-            DateTime dob = new DateTime(2000, 1, 1); 
             User newUser = CustomerController.CreateUser(username, email, password, gender, dob);
-
             bool isRegistered = CustomerController.RegisterUser(newUser);
+
             if (isRegistered)
             {
                 User user = CustomerController.Login(username, password);

@@ -78,6 +78,24 @@ namespace ProjectPSD.Views
         protected global::System.Web.UI.WebControls.TextBox PasswordTb;
 
         /// <summary>
+        /// ConfirmPasswordLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ConfirmPasswordLbl;
+
+        /// <summary>
+        /// ConfirmPasswordTb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ConfirmPasswordTb;
+
+        /// <summary>
         /// GenderLbl control.
         /// </summary>
         /// <remarks>
@@ -96,22 +114,40 @@ namespace ProjectPSD.Views
         protected global::System.Web.UI.WebControls.RadioButtonList GenderRbl;
 
         /// <summary>
-        /// ConfirmPasswordLbl control.
+        /// DobLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmPasswordLbl;
+        protected global::System.Web.UI.WebControls.Label DobLbl;
 
         /// <summary>
-        /// ConfirmPasswordTb control.
+        /// DayDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmPasswordTb;
+        protected global::System.Web.UI.WebControls.DropDownList DayDDL;
+
+        /// <summary>
+        /// MonthDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList MonthDDL;
+
+        /// <summary>
+        /// YearDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList YearDDL;
 
         /// <summary>
         /// RoleLbl control.
