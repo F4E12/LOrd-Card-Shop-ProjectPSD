@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ProjectPSD.Controller;
 using ProjectPSD.Models;
 using ProjectPSD.Repository;
 
@@ -80,7 +81,15 @@ namespace ProjectPSD.Views
                 }
                 else if (e.CommandName == "AddToCart")
                 {
+                    if (Session["UserID"] != null)
+                    {
+                        int userID = Convert.ToInt32(Session["UserID"]);
 
+                        string message = CartController.AddCardToCart(userID, cardID);
+                        Response.Write($"<script>alert('{message}');</script>");
+
+                    }
+                    Response.Redirect("OrderCard.aspx");
                 }
             }
             else
