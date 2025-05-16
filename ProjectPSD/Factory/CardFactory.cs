@@ -8,7 +8,7 @@ namespace ProjectPSD.Factory
 {
     public class CardFactory
     {
-        public Card CreateCard(int cardID, string cardName, int cardPrice, string cardDesc, string cardType, bool isFoil)
+        public Card CreateCard(int cardID, string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
         {
             Card newCard = new Card();
             newCard.CardID = cardID;

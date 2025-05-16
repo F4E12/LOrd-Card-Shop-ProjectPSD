@@ -19,5 +19,21 @@ namespace ProjectPSD.Handler
             return CardRepository.DeleteCard(id);
         }
 
+        private static int GenerateCartId()
+        {
+            Card card = CardRepository.GetLastCard();
+            if (card == null)
+            {
+                return 1;
+            }
+            return card.CardID + 1;
+        }
+
+        public static Card InsertCard(string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
+        {
+
+            return CardRepository.InsertCard(GenerateCartId(), cardName, cardPrice, cardDesc, cardType, isFoil);
+        }
+
     }
 }

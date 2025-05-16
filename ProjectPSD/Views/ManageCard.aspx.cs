@@ -50,7 +50,7 @@ namespace ProjectPSD.Views
 
         protected void InsertBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InserPage.aspx");
+            Response.Redirect("InsertPage.aspx");
         }
     }
 }

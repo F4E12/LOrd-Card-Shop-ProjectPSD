@@ -22,12 +22,13 @@ namespace ProjectPSD.Repository
             return db.Cards.Find(cardId);
         }
 
-        public static void InsertCard(int cardID, string cardName, int cardPrice, string cardDesc, string cardType, bool isFoil)
+        public static Card InsertCard(int cardID, string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
         {
             CardFactory factory = new CardFactory();
             Card card = factory.CreateCard(cardID, cardName, cardPrice, cardDesc, cardType, isFoil);
             db.Cards.Add(card);
             db.SaveChanges();
+            return card;
         }
 
         public static string DeleteCard(int cardId)
@@ -45,7 +46,7 @@ namespace ProjectPSD.Repository
             }
         }
 
-        public static void UpdateCard(int cardID, string cardName, int cardPrice, string cardDesc, string cardType, bool isFoil)
+        public static void UpdateCard(int cardID, string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
         {
             Card card = db.Cards.Find(cardID);
             if (card != null)
@@ -59,5 +60,11 @@ namespace ProjectPSD.Repository
                 db.SaveChanges();
             }
         }
+
+        public static Card GetLastCard()
+        {
+            return db.Cards.ToList().LastOrDefault();
+        }
+
     }
 }
