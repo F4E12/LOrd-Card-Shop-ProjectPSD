@@ -78,7 +78,7 @@
       <DependentUpon>CardShop.mdf</DependentUpon>
     </Content>
     <Content Include="Views\CardDetail.aspx" />
-    <Content Include="Views\Cart.aspx" />
+    <Content Include="Views\CartPage.aspx" />
     <Content Include="Views\Checkout.aspx" />
     <Content Include="Views\Logout.aspx" />
     <Content Include="Models\CardShop.Context.tt">
@@ -102,6 +102,7 @@
     <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Factory\AdminFactory.cs" />
+    <Compile Include="Factory\CartFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
     <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
@@ -114,12 +115,12 @@
     <Compile Include="Views\CardDetail.aspx.designer.cs">
       <DependentUpon>CardDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cart.aspx.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="Views\CartPage.aspx.cs">
+      <DependentUpon>CartPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Cart.aspx.designer.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="Views\CartPage.aspx.designer.cs">
+      <DependentUpon>CartPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>

@@ -16,28 +16,34 @@ namespace ProjectPSD.Repository
             return db.Carts.Include(c => c.Card).Where(c => c.UserID == userId).ToList();
         }
 
-        public static void AddOrUpdateCartItem(int userId, int cardId)
+        public static Cart GetCartByCardId(int cardId)
         {
-            var existingCart = db.Carts.FirstOrDefault(c => c.UserID == userId && c.CardID == cardId);
+            return db.Carts.Where(c => c.CardID.Equals(cardId)).FirstOrDefault();
+        }
 
-            if (existingCart != null)
-            {
-                existingCart.Quantity += 1;
-                db.Entry(existingCart).State = EntityState.Modified;
-            }
-            else
-            {
-                Cart newCart = new Cart
-                {
-                    CartID = GenerateNewCartID(),
-                    UserID = userId,
-                    CardID = cardId,
-                    Quantity = 1
-                };
-                db.Carts.Add(newCart);
-            }
+        public static Cart GetCartByCardIdAndUserId(int cardId, int userId)
+        {
+            return db.Carts.FirstOrDefault(c => c.CardID == cardId && c.UserID == userId);
+        }
 
+
+        public static void InsertCart(Cart cart)
+        {
+            db.Carts.Add(cart);
             db.SaveChanges();
+
+            return;
+        }
+
+        public static Cart AddCartQuantitiy(int cartId)
+        {
+            Cart cart = db.Carts.Find(cartId);
+
+            cart.Quantity++;
+            db.SaveChanges();
+
+            return cart;
+
         }
 
         public static List<Cart> ClearCart(int userId)

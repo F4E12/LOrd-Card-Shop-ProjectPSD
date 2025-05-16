@@ -50,7 +50,7 @@ namespace ProjectPSD.Views
                         <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>
                         <a href='History.aspx' class='{(currentPage == "History.aspx" ? "active" : "")}'>HISTORY</a>
                         <a href='Logout.aspx' class='{(currentPage == "Logout.aspx" ? "active" : "")}'>LOGOUT</a>
-                        <a href='Cart.aspx' class='{(currentPage == "Cart.aspx" ? "active" : "")}'>CART</a>
+                        <a href='CartPage.aspx' class='{(currentPage == "CartPage.aspx" ? "active" : "")}'>CART</a>
                     </div>
                 "));
                 }
