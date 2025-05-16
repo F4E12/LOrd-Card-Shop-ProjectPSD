@@ -59,7 +59,7 @@ namespace ProjectPSD.Views
 
                 if(int.TryParse(selectedCardID, out int cardID))
                 {
-                    var card = CardRepository.getCardById(cardID);
+                    var card = CardRepository.GetCardById(cardID);
 
 
                     if (card != null)

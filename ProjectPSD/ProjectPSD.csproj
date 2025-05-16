@@ -80,6 +80,7 @@
     <Content Include="Views\CardDetail.aspx" />
     <Content Include="Views\CartPage.aspx" />
     <Content Include="Views\Checkout.aspx" />
+    <Content Include="Views\InsertPage.aspx" />
     <Content Include="Views\Logout.aspx" />
     <Content Include="Models\CardShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -97,14 +98,18 @@
     <Content Include="Views\OrderCard.aspx" />
     <Content Include="Views\Profile.aspx" />
     <Content Include="Views\Register.aspx" />
+    <Content Include="Views\UpdatePage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CardController.cs" />
     <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Factory\AdminFactory.cs" />
+    <Compile Include="Factory\CardFactory.cs" />
     <Compile Include="Factory\CartFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
+    <Compile Include="Handler\CardHandler.cs" />
     <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Repository\CardRepository.cs" />
@@ -129,6 +134,13 @@
     </Compile>
     <Compile Include="Views\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InsertPage.aspx.cs">
+      <DependentUpon>InsertPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\InsertPage.aspx.designer.cs">
+      <DependentUpon>InsertPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -210,6 +222,13 @@
     </Compile>
     <Compile Include="Views\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdatePage.aspx.cs">
+      <DependentUpon>UpdatePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UpdatePage.aspx.designer.cs">
+      <DependentUpon>UpdatePage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

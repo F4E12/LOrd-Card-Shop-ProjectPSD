@@ -22,7 +22,8 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:Button ID="InsertBtn" runat="server" Text="Insert New Card" />
+            <asp:Label ID="MessageLbl" runat="server" Text=""></asp:Label>
+            <asp:Button ID="InsertBtn" runat="server" Text="Insert New Card" OnClick="InsertBtn_Click"/>
         </div>
     </form>
 </body>

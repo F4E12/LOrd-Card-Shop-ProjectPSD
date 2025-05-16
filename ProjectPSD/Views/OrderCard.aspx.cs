@@ -63,7 +63,7 @@ namespace ProjectPSD.Views
 
         protected void refreshPage()
         {
-            List<Card> cardList = CardRepository.getAllCards();
+            List<Card> cardList = CardRepository.GetAllCards();
             gvOrderCard.DataSource = cardList;
             gvOrderCard.DataBind();
 
