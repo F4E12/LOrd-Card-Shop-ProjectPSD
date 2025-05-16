@@ -39,9 +39,22 @@ namespace ProjectPSD.Repository
 
             db.SaveChanges();
         }
+
+        public static List<Cart> ClearCart(int userId)
+        {
+            var items = db.Carts.Where(c => c.UserID == userId).ToList();
+            db.Carts.RemoveRange(items);
+            db.SaveChanges();
+            return items;
+        }
         public static int GenerateNewCartID()
         {
-            return db.Carts.Any() ? db.Carts.Max(c => c.CartID) + 1 : 1;
+            Cart cart = db.Carts.ToList().LastOrDefault();
+            if (cart == null)
+            {
+                return 1;
+            }
+            else return cart.CartID + 1;
         }
     }
 }

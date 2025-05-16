@@ -19,9 +19,7 @@ namespace ProjectPSD.Handler
 
         public static void ClearCart(int userId)
         {
-            var items = db.Carts.Where(c => c.UserID == userId).ToList();
-            db.Carts.RemoveRange(items);
-            db.SaveChanges();
+            CartRepository.ClearCart(userId);
         }
     }
 }
