@@ -51,6 +51,7 @@ namespace ProjectPSD.Views
         protected void btnConfirmCheckout_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(Session["UserID"]);
+            TransactionController.HandleCheckOut(userId);
             CartController.Checkout(userId);
 
             Response.Redirect("Homepage.aspx");

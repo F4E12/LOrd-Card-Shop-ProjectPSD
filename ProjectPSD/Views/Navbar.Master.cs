@@ -66,7 +66,7 @@ namespace ProjectPSD.Views
                     <div class='navbar'>
                         <a href='Homepage.aspx' class='{(currentPage == "Homepage.aspx" ? "active" : "")}'>HOME</a>
                         <a href='ManageCard.aspx' class='{(currentPage == "ManageCard.aspx" ? "active" : "")}'>MANAGE CARD</a>
-                        <a href='ViewTransaction.aspx' class='{(currentPage == "ViewTransaction.aspx" ? "active" : "")}'>VIEW TRANSACTION</a>
+                        <a href='HandleTransaction.aspx' class='{(currentPage == "HandleTransaction.aspx" ? "active" : "")}'>VIEW TRANSACTION</a>
                         <a href='TransactionReport.aspx' class='{(currentPage == "TransactionReport.aspx" ? "active" : "")}'>TRANSACTION REPORT</a>
                         <a href='OrderQueue.aspx' class='{(currentPage == "OrderQueue.aspx" ? "active" : "")}'>ORDER QUEUE</a>
                         <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>

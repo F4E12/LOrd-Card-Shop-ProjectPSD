@@ -80,6 +80,7 @@
     <Content Include="Views\CardDetail.aspx" />
     <Content Include="Views\CartPage.aspx" />
     <Content Include="Views\Checkout.aspx" />
+    <Content Include="Views\HandleTransaction.aspx" />
     <Content Include="Views\InsertPage.aspx" />
     <Content Include="Views\Logout.aspx" />
     <Content Include="Models\CardShop.Context.tt">
@@ -105,15 +106,19 @@
     <Compile Include="Controller\CardController.cs" />
     <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
+    <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Factory\AdminFactory.cs" />
     <Compile Include="Factory\CardFactory.cs" />
     <Compile Include="Factory\CartFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
+    <Compile Include="Factory\TransactionFactory.cs" />
     <Compile Include="Handler\CardHandler.cs" />
     <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
+    <Compile Include="Handler\TransactionHandler.cs" />
     <Compile Include="Repository\CardRepository.cs" />
     <Compile Include="Repository\CartRepository.cs" />
+    <Compile Include="Repository\TransactionRepository.cs" />
     <Compile Include="Views\CardDetail.aspx.cs">
       <DependentUpon>CardDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -134,6 +139,13 @@
     </Compile>
     <Compile Include="Views\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HandleTransaction.aspx.cs">
+      <DependentUpon>HandleTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\HandleTransaction.aspx.designer.cs">
+      <DependentUpon>HandleTransaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\InsertPage.aspx.cs">
       <DependentUpon>InsertPage.aspx</DependentUpon>
