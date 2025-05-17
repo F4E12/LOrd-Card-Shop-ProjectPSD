@@ -61,6 +61,51 @@ namespace ProjectPSD.Controller
                 return "Failed to insert the card";
             }
         }
+        
+        public static Card GetCardById(int id)
+        {
+            return CardHandler.GetCardById(id);
+        }
 
+        public static string UpdateCard(int id, string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
+        {
+            if (string.IsNullOrWhiteSpace(cardName) || cardName.Length < 5 || cardName.Length > 50)
+            {
+                return "Name must be between 5 and 50 characters.";
+            }
+            foreach (char c in cardName)
+            {
+                if (!char.IsLetter(c) && c != ' ')
+                {
+                    return "Name must contain only alphabet letters and spaces.";
+                }
+            }
+
+            if (cardPrice < 10000)
+            {
+                return "Price must be greater or equal than 10000.";
+            }
+
+            if (string.IsNullOrWhiteSpace(cardDesc))
+            {
+                return "Description must not be empty.";
+            }
+
+            if (!(cardType == "Spell" || cardType == "Monster"))
+            {
+                return "Type must be 'Spell' or 'Monster'.";
+            }
+
+            Card card = CardHandler.UpdateCard(id, cardName, cardPrice, cardDesc, cardType, isFoil);
+
+            if (card != null)
+            {
+                return "Success updating the card";
+            }
+            else
+            {
+                return "Failed to update the card";
+            }
+        }
     }
 }

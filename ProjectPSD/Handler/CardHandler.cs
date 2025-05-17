@@ -35,5 +35,14 @@ namespace ProjectPSD.Handler
             return CardRepository.InsertCard(GenerateCartId(), cardName, cardPrice, cardDesc, cardType, isFoil);
         }
 
+        public static Card GetCardById(int id)
+        {
+            return CardRepository.GetCardById(id);
+        }
+
+        public static Card UpdateCard(int id, string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
+        {
+            return CardRepository.UpdateCard(id, cardName, cardPrice, cardDesc, cardType, isFoil);
+        }
     }
 }

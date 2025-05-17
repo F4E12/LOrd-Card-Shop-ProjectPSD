@@ -14,6 +14,7 @@
                     <asp:BoundField DataField="CardID" HeaderText="Card ID" SortExpression="CardID" />
                     <asp:BoundField DataField="CardName" HeaderText="Card Name" SortExpression="CardName" />
                     <asp:BoundField DataField="CardPrice" HeaderText="Card Price" SortExpression="CardPrice" />
+                    <asp:BoundField DataField="CardDesc" HeaderText="Card Description" SortExpression="CardDescription" />
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <asp:Button ID="DeleteBtn" runat="server" Text="Delete" CommandName="Delete"/>

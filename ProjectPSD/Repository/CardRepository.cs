@@ -46,7 +46,7 @@ namespace ProjectPSD.Repository
             }
         }
 
-        public static void UpdateCard(int cardID, string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
+        public static Card UpdateCard(int cardID, string cardName, double cardPrice, string cardDesc, string cardType, bool isFoil)
         {
             Card card = db.Cards.Find(cardID);
             if (card != null)
@@ -58,7 +58,9 @@ namespace ProjectPSD.Repository
                 card.CardType = cardType;
                 card.isFoil = isFoil;
                 db.SaveChanges();
+                return card;
             }
+            return null;
         }
 
         public static Card GetLastCard()
