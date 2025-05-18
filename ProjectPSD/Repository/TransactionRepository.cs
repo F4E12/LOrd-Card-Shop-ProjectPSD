@@ -57,5 +57,10 @@ namespace ProjectPSD.Repository
             th.Status = status;
             db.SaveChanges();
         }
+        public static List<TransactionHeader> GetTransactionHeaderByCustomerId(int userId)
+        {
+            return db.TransactionHeaders.Where(th => th.CustomerID == userId).ToList();
+        }
+
     }
 }

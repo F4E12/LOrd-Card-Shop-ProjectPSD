@@ -75,5 +75,10 @@ namespace ProjectPSD.Handler
         {
             return TransactionRepository.GetAllTransactionHeader();
         }
+        public static List<TransactionHeader> GetTransactionHeaderByCustomerId(int userId)
+        {
+            return TransactionRepository.GetTransactionHeaderByUserId(userId);
+        }
+
     }
 }
