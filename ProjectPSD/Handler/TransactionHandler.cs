@@ -46,11 +46,11 @@ namespace ProjectPSD.Handler
             DateTime transactionDate = DateTime.Now;
             string status = "Unhandled";
 
-            TransactionRepository.InsertTransactionHeader(thid, transactionDate, userId, status);
+            TransactionHeader th = TransactionRepository.InsertTransactionHeader(thid, transactionDate, userId, status);
 
             foreach (Cart item in items)
             {
-                TransactionRepository.InsertTransactionDetail(thid, item.CardID, item.Quantity);
+                TransactionRepository.InsertTransactionDetail(th.TransactionID, item.CardID, item.Quantity);
             }
         }
 
@@ -60,9 +60,9 @@ namespace ProjectPSD.Handler
             if(th== null) { return; }
             else
             {
-                if(th.Status == "unhandled")
+                if(th.Status == "Unhandled")
                 {
-                    TransactionRepository.UpdateTransactionHeaderStatus(transId, "handled");
+                    TransactionRepository.UpdateTransactionHeaderStatus(transId, "Handled");
                 }
                 else
                 {

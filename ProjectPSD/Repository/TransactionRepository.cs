@@ -12,12 +12,12 @@ namespace ProjectPSD.Repository
     {
         protected static CardShopEntities db = new CardShopEntities();
 
-        public static void InsertTransactionHeader(int id, DateTime transactionDate, int customerId, string status)
+        public static TransactionHeader InsertTransactionHeader(int id, DateTime transactionDate, int customerId, string status)
         {
             TransactionHeader th = TransactionFactory.InsertTransactionHeader(id, transactionDate, customerId, status);
             db.TransactionHeaders.Add(th);
             db.SaveChanges();
-            //return th;
+            return th;
         }
         
         public static void InsertTransactionDetail(int id, int cardId, int quantity)
