@@ -34,19 +34,19 @@ namespace ProjectPSD.Views
 
         private void LoadTransaction(int transactionId)
         {
-            TransactionHeader header = TransactionController.GetTransactionById(transactionId);
-            if (header == null) return;
+            TransactionHeader transaction = TransactionController.GetTransactionById(transactionId);
+            if (transaction == null) return;
 
-            var details = header.TransactionDetails.Select(d => new
+            var detailsTransaction = transaction.TransactionDetails.Select(d => new
             {
-                header.TransactionID,
+                transaction.TransactionID,
                 d.CardID,
                 CardName = d.Card.CardName,
                 CardPrice = d.Card.CardPrice,
                 d.Quantity
             }).ToList();
 
-            TransactionDetailGV.DataSource = details;
+            TransactionDetailGV.DataSource = detailsTransaction;
             TransactionDetailGV.DataBind();
         }
 
