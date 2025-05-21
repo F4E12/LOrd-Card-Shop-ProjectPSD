@@ -28,5 +28,10 @@ namespace ProjectPSD.Controller
             return TransactionHandler.GetTransactionHeaderByCustomerId(userId);
         }
 
+        public static TransactionHeader GetTransactionById(int transactionId)
+        {
+            return TransactionHandler.GetTransactionById(transactionId);
+        }
+
     }
 }
