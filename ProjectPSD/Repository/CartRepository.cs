@@ -9,7 +9,7 @@ namespace ProjectPSD.Repository
 {
     public class CartRepository
     {
-        protected static CardShopEntities db = new CardShopEntities();
+        protected static CardShopEntities1 db = new CardShopEntities1();
 
         public static List<Cart> GetCartByUserId(int userId)
         {

@@ -81,22 +81,22 @@
     <Content Include="App_Data\CardShop_log.ldf">
       <DependentUpon>CardShop.mdf</DependentUpon>
     </Content>
-    <Content Include="Views\CardDetail.aspx" />
-    <Content Include="Views\CartPage.aspx" />
-    <Content Include="Views\Checkout.aspx" />
-    <Content Include="Views\HandleTransaction.aspx" />
-    <Content Include="Views\InsertPage.aspx" />
-    <Content Include="Views\Logout.aspx" />
     <Content Include="Models\CardShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CardShop.Context.cs</LastGenOutput>
       <DependentUpon>CardShop.edmx</DependentUpon>
+      <LastGenOutput>CardShop.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\CardShop.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CardShop.edmx</DependentUpon>
       <LastGenOutput>CardShop.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\CardDetail.aspx" />
+    <Content Include="Views\CartPage.aspx" />
+    <Content Include="Views\Checkout.aspx" />
+    <Content Include="Views\HandleTransaction.aspx" />
+    <Content Include="Views\InsertPage.aspx" />
+    <Content Include="Views\Logout.aspx" />
     <Content Include="Views\Homepage.aspx" />
     <Content Include="Views\Login.aspx" />
     <Content Include="Views\ManageCard.aspx" />
@@ -128,6 +128,36 @@
     <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Handler\TransactionHandler.cs" />
+    <Compile Include="Models\Card.cs">
+      <DependentUpon>CardShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CardShop.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardShop.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CardShop.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CardShop.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardShop.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>CardShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransactionDetail.cs">
+      <DependentUpon>CardShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransactionHeader.cs">
+      <DependentUpon>CardShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>CardShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Report\TransactionReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -178,36 +208,6 @@
     </Compile>
     <Compile Include="Views\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Card.cs">
-      <DependentUpon>CardShop.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CardShop.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CardShop.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CardShop.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CardShop.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CardShop.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CardShop.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cart.cs">
-      <DependentUpon>CardShop.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TransactionDetail.cs">
-      <DependentUpon>CardShop.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TransactionHeader.cs">
-      <DependentUpon>CardShop.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>CardShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
@@ -290,13 +290,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\CardShop.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CardShop.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CardShop.edmx.diagram">
-      <DependentUpon>CardShop.edmx</DependentUpon>
-    </Content>
     <Content Include="Dataset\DataSet.xsc">
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Content>
@@ -307,6 +300,13 @@
     </None>
     <Content Include="Dataset\DataSet.xss">
       <DependentUpon>DataSet.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\CardShop.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CardShop.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CardShop.edmx.diagram">
+      <DependentUpon>CardShop.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Navbar.Master" />

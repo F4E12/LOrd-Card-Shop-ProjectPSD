@@ -10,7 +10,7 @@ namespace ProjectPSD.Repository
 {
     public class TransactionRepository
     {
-        protected static CardShopEntities db = new CardShopEntities();
+        protected static CardShopEntities1 db = new CardShopEntities1();
 
         public static TransactionHeader InsertTransactionHeader(int id, DateTime transactionDate, int customerId, string status)
         {
@@ -19,7 +19,7 @@ namespace ProjectPSD.Repository
             db.SaveChanges();
             return th;
         }
-        
+
         public static void InsertTransactionDetail(int id, int cardId, int quantity)
         {
             TransactionDetail td = TransactionFactory.InsertTransactionDetail(id, cardId, quantity);
@@ -40,7 +40,7 @@ namespace ProjectPSD.Repository
         {
             return db.TransactionHeaders.ToList();
         }
-        
+
         public static List<TransactionDetail> GetAllTransactionDetail()
         {
             return db.TransactionDetails.ToList();
