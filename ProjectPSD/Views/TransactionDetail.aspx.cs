@@ -47,6 +47,7 @@ namespace ProjectPSD.Views
             }).ToList();
 
             TransactionDetailGV.DataSource = detailsTransaction;
+
             TransactionDetailGV.DataBind();
         }
 

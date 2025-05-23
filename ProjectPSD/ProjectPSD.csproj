@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -101,6 +105,7 @@
     <Content Include="Views\Register.aspx" />
     <Content Include="Views\TransactionDetail.aspx" />
     <Content Include="Views\TransactionHistory.aspx" />
+    <Content Include="Views\TransactionReport.aspx" />
     <Content Include="Views\UpdatePage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -109,6 +114,11 @@
     <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\TransactionController.cs" />
+    <Compile Include="Dataset\DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Factory\AdminFactory.cs" />
     <Compile Include="Factory\CardFactory.cs" />
     <Compile Include="Factory\CartFactory.cs" />
@@ -118,6 +128,12 @@
     <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Handler\TransactionHandler.cs" />
+    <Compile Include="Report\TransactionReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransactionReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Repository\CardRepository.cs" />
     <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\TransactionRepository.cs" />
@@ -258,6 +274,13 @@
     <Compile Include="Views\TransactionHistory.aspx.designer.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\TransactionReport.aspx.cs">
+      <DependentUpon>TransactionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\TransactionReport.aspx.designer.cs">
+      <DependentUpon>TransactionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdatePage.aspx.cs">
       <DependentUpon>UpdatePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,6 +297,17 @@
     <Content Include="Models\CardShop.edmx.diagram">
       <DependentUpon>CardShop.edmx</DependentUpon>
     </Content>
+    <Content Include="Dataset\DataSet.xsc">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\DataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\DataSet.xss">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Navbar.Master" />
     <None Include="Web.Debug.config">
@@ -285,6 +319,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Report\TransactionReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TransactionReport.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
