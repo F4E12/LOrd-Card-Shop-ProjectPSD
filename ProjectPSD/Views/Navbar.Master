@@ -5,28 +5,66 @@
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <style>
-        .navbar a {
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+        }
+
+        .left-section, .right-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .NavButton {
             margin-right: 15px;
-            color: black;
-            text-decoration: none;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .navbar a:hover {
-            text-decoration: underline;
+
+        .NavButton:hover {
+            background-color: #dcdcdc;
+            color: #333;
         }
-        .navbar a.active {
-            color: blue;
-            text-decoration: underline;
-            font-weight: bold;
+
+        .ActiveNav {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .right-section .NavButton {
+            margin-right: 0;
+            margin-left: 15px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:PlaceHolder ID="NavbarPH" runat="server"></asp:PlaceHolder>
-        <asp:TextBox ID="FilterTb" runat="server"></asp:TextBox>
-        <asp:Button ID="SearchBtn" runat="server" Text="Search" OnClick="SearchBtn_Click"/>
+        <div class="navbar">
+            <div class="left-section">
+                <asp:Button ID="HomeBtn" runat="server" Text="Home" CssClass="NavButton" OnClick="Home_Click" />
+                <asp:Button ID="ManageCardBtn" runat="server" Text="Manage Card" CssClass="NavButton" OnClick="ManageCard_Click" Visible="false" />
+                <asp:Button ID="OrderCardBtn" runat="server" Text="Order Card" CssClass="NavButton" OnClick="OrderCard_Click" Visible="false" />
+                <asp:Button ID="CartBtn" runat="server" Text="Cart" CssClass="NavButton" OnClick="Cart_Click" Visible="false" />
+                <asp:Button ID="TransactionHistoryBtn" runat="server" Text="Transaction History" CssClass="NavButton" OnClick="TransactionHistory_Click" Visible="false" />
+                <asp:Button ID="TransactionReportBtn" runat="server" Text="Transaction Report" CssClass="NavButton" OnClick="TransactionReport_Click" Visible="false" />
+                <asp:Button ID="OrderQueueBtn" runat="server" Text="Order Queue" CssClass="NavButton" OnClick="OrderQueue_Click" Visible="false" />
+            </div>
+            <div class="right-section">
+                <asp:Button ID="ProfileBtn" runat="server" Text="Profile" CssClass="NavButton" OnClick="Profile_Click" Visible="false" />
+                <asp:Button ID="LoginBtn" runat="server" Text="Login" CssClass="NavButton" OnClick="Login_Click" Visible="false" />
+                <asp:Button ID="RegisterBtn" runat="server" Text="Register" CssClass="NavButton" OnClick="Register_Click" Visible="false" />
+                <asp:Button ID="LogoutBtn" runat="server" Text="Logout" CssClass="NavButton" OnClick="Logout_Click" Visible="false" />
+            </div>
+        </div>
         <br />
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </form>

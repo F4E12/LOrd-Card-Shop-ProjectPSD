@@ -10,7 +10,7 @@ namespace ProjectPSD.Repository
 {
     public class TransactionRepository
     {
-        protected static CardShopEntities1 db = new CardShopEntities1();
+        protected static CardShopEntities db = new CardShopEntities();
 
         public static TransactionHeader InsertTransactionHeader(int id, DateTime transactionDate, int customerId, string status)
         {

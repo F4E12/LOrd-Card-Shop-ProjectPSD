@@ -13,82 +13,134 @@ namespace ProjectPSD.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["User"] == null)
+            if (!IsPostBack)
             {
-                HttpCookie cookie = Request.Cookies["RememberMe"];
-
-                if (cookie != null &&
-                    !string.IsNullOrEmpty(cookie.Values["Username"]) &&
-                    !string.IsNullOrEmpty(cookie.Values["Password"]))
+                if (Session["User"] == null)
                 {
-                    string username = cookie.Values["Username"];
-                    string password = cookie.Values["Password"];
-
-                    User user = CustomerController.Login(username, password);
-                    if (user != null)
+                    HttpCookie cookie = Request.Cookies["RememberMe"];
+                    if (cookie != null &&
+                        !string.IsNullOrEmpty(cookie.Values["Username"]) &&
+                        !string.IsNullOrEmpty(cookie.Values["Password"]))
                     {
-                        Session["User"] = user;
-                        Session["Role"] = user.UserRole;
-                        Session["UserID"] = user.UserID;
+                        string username = cookie.Values["Username"];
+                        string password = cookie.Values["Password"];
+
+                        User user = CustomerController.Login(username, password);
+                        if (user != null)
+                        {
+                            Session["User"] = user;
+                            Session["Role"] = user.UserRole;
+                            Session["UserID"] = user.UserID;
+                        }
+                        else
+                        {
+                            Response.Redirect("Login.aspx");
+                            return;
+                        }
                     }
                     else
                     {
-                        Response.Redirect("Login.aspx");
+                        ShowGuestNavbar();
+                        HighlightActiveNav(GetCurrentPage());
                         return;
                     }
                 }
+
+                string role = Session["Role"]?.ToString();
+
+                if (role == "Admin")
+                {
+                    ManageCardBtn.Visible = true;
+                    TransactionHistoryBtn.Visible = true;
+                    TransactionReportBtn.Visible = true;
+                    OrderQueueBtn.Visible = true;
+                    ProfileBtn.Visible = true;
+                    LogoutBtn.Visible = true;
+                }
+                else if (role == "Customer")
+                {
+                    OrderCardBtn.Visible = true;
+                    CartBtn.Visible = true;
+                    TransactionHistoryBtn.Visible = true;
+                    ProfileBtn.Visible = true;
+                    LogoutBtn.Visible = true;
+                }
                 else
                 {
-                    Response.Redirect("Login.aspx");
-                    return;
+                    ShowGuestNavbar();
                 }
-            }
 
-            User currentUser = (User)Session["User"];
-            string currentPage = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
-
-            if (currentUser.UserRole == "Customer")
-            {
-                NavbarPH.Controls.Add(new LiteralControl($@"
-                    <div class='navbar'>
-                        <a href='Homepage.aspx' class='{(currentPage == "Homepage.aspx" ? "active" : "")}'>HOME</a>
-                        <a href='OrderCard.aspx' class='{(currentPage == "OrderCard.aspx" ? "active" : "")}'>ORDERCARD</a>
-                        <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>
-                        <a href='TransactionHistory.aspx' class='{(currentPage == "History.aspx" ? "active" : "")}'>HISTORY</a>
-                        <a href='CartPage.aspx' class='{(currentPage == "CartPage.aspx" ? "active" : "")}'>CART</a>
-                        <a href='Logout.aspx'>LOGOUT</a>
-                    </div>
-                "));
-            }
-            else if (currentUser.UserRole == "Admin")
-            {
-                NavbarPH.Controls.Add(new LiteralControl($@"
-                   <div class='navbar'>
-                       <a href='Homepage.aspx' class='{(currentPage == "Homepage.aspx" ? "active" : "")}'>HOME</a>
-                       <a href='ManageCard.aspx' class='{(currentPage == "ManageCard.aspx" ? "active" : "")}'>MANAGE CARD</a>
-                       <a href='TransactionHistory.aspx' class='{(currentPage == "TransactionHistory.aspx" ? "active" : "")}'>TRANSACTION HISTORY</a>
-                       <a href='TransactionReport.aspx' class='{(currentPage == "TransactionReport.aspx" ? "active" : "")}'>TRANSACTION REPORT</a>
-                       <a href='OrderQueue.aspx' class='{(currentPage == "OrderQueue.aspx" ? "active" : "")}'>ORDER QUEUE</a>
-                       <a href='Profile.aspx' class='{(currentPage == "Profile.aspx" ? "active" : "")}'>PROFILE</a>
-                       <a href='Logout.aspx'>LOGOUT</a>
-                   </div>
-                "));
+                HighlightActiveNav(GetCurrentPage());
             }
         }
 
-        protected void SearchBtn_Click(object sender, EventArgs e)
+        private void ShowGuestNavbar()
         {
-            User currentUser = (User)Session["User"];
-            string currentPage = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
-            if (currentUser.UserRole == "Customer")
+            LoginBtn.Visible = true;
+            RegisterBtn.Visible = true;
+        }
+
+        private string GetCurrentPage()
+        {
+            return System.IO.Path.GetFileName(Request.Url.AbsolutePath).ToLower();
+        }
+
+        private void HighlightActiveNav(string currentPage)
+        {
+            RemoveActiveClassFromAll();
+
+            switch (currentPage)
             {
-                string searchParam = FilterTb.Text;
-                Response.Redirect("OrderCard.aspx?filter=" + searchParam);
-            }else if(currentUser.UserRole =="Admin")
-            {
-                string searchParam = FilterTb.Text;
-                Response.Redirect("ManageCard.aspx?filter=" + searchParam);
+                case "homepage.aspx":
+                    HomeBtn.CssClass += " ActiveNav"; break;
+                case "managecard.aspx":
+                    ManageCardBtn.CssClass += " ActiveNav"; break;
+                case "ordercard.aspx":
+                    OrderCardBtn.CssClass += " ActiveNav"; break;
+                case "cartpage.aspx":
+                    CartBtn.CssClass += " ActiveNav"; break;
+                case "transactionhistory.aspx":
+                    TransactionHistoryBtn.CssClass += " ActiveNav"; break;
+                case "transactionreport.aspx":
+                    TransactionReportBtn.CssClass += " ActiveNav"; break;
+                case "orderqueue.aspx":
+                    OrderQueueBtn.CssClass += " ActiveNav"; break;
+                case "profile.aspx":
+                    ProfileBtn.CssClass += " ActiveNav"; break;
+                case "login.aspx":
+                    LoginBtn.CssClass += " ActiveNav"; break;
+                case "register.aspx":
+                    RegisterBtn.CssClass += " ActiveNav"; break;
+                case "logout.aspx":
+                    LogoutBtn.CssClass += " ActiveNav"; break;
             }
         }
+
+        private void RemoveActiveClassFromAll()
+        {
+            HomeBtn.CssClass = HomeBtn.CssClass.Replace(" ActiveNav", "");
+            ManageCardBtn.CssClass = ManageCardBtn.CssClass.Replace(" ActiveNav", "");
+            OrderCardBtn.CssClass = OrderCardBtn.CssClass.Replace(" ActiveNav", "");
+            CartBtn.CssClass = CartBtn.CssClass.Replace(" ActiveNav", "");
+            TransactionHistoryBtn.CssClass = TransactionHistoryBtn.CssClass.Replace(" ActiveNav", "");
+            TransactionReportBtn.CssClass = TransactionReportBtn.CssClass.Replace(" ActiveNav", "");
+            OrderQueueBtn.CssClass = OrderQueueBtn.CssClass.Replace(" ActiveNav", "");
+            ProfileBtn.CssClass = ProfileBtn.CssClass.Replace(" ActiveNav", "");
+            LoginBtn.CssClass = LoginBtn.CssClass.Replace(" ActiveNav", "");
+            RegisterBtn.CssClass = RegisterBtn.CssClass.Replace(" ActiveNav", "");
+            LogoutBtn.CssClass = LogoutBtn.CssClass.Replace(" ActiveNav", "");
+        }
+
+        protected void Home_Click(object sender, EventArgs e) => Response.Redirect("Homepage.aspx");
+        protected void ManageCard_Click(object sender, EventArgs e) => Response.Redirect("ManageCard.aspx");
+        protected void OrderCard_Click(object sender, EventArgs e) => Response.Redirect("OrderCard.aspx");
+        protected void Cart_Click(object sender, EventArgs e) => Response.Redirect("CartPage.aspx");
+        protected void TransactionHistory_Click(object sender, EventArgs e) => Response.Redirect("TransactionHistory.aspx");
+        protected void TransactionReport_Click(object sender, EventArgs e) => Response.Redirect("TransactionReport.aspx");
+        protected void OrderQueue_Click(object sender, EventArgs e) => Response.Redirect("OrderQueue.aspx");
+        protected void Profile_Click(object sender, EventArgs e) => Response.Redirect("Profile.aspx");
+        protected void Login_Click(object sender, EventArgs e) => Response.Redirect("Login.aspx");
+        protected void Register_Click(object sender, EventArgs e) => Response.Redirect("Register.aspx");
+        protected void Logout_Click(object sender, EventArgs e) => Response.Redirect("Logout.aspx");
     }
 }
