@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Your Shopping Cart!</h1>
+    <asp:Label ID="alertMsg" runat="server" Font-Size="Large"></asp:Label><br />
 
     <asp:GridView ID="CartGv" runat="server" AutoGenerateColumns="False">
         <Columns>
@@ -16,7 +17,9 @@
             <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
         </Columns>
     </asp:GridView>
+    <asp:Button ID="clearCartBtn" runat="server" Text="Clear Cart" OnClick="clearCartBtn_Click"/>
 
+    <br />
     <br />
     <asp:Button ID="CheckOutBtn" runat="server" Text="Check Out" OnClick="CheckOutBtn_Click1" />
 </asp:Content>
