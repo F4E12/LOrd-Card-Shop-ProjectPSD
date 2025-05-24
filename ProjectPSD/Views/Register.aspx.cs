@@ -15,6 +15,12 @@ namespace ProjectPSD.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["User"] != null)
+            {
+                Response.Redirect("~/Views/Homepage.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 for (int year = DateTime.Now.Year; year >= 1950; year--)

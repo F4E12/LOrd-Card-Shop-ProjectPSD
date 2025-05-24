@@ -7,14 +7,14 @@
       <Diagram DiagramId="4d9080cd9b0749558960b85b359d0c7e" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="CardShopModel.Card" Width="1.5" PointX="5.125" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CardShopModel.Cart" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardShopModel.TransactionDetail" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CardShopModel.TransactionHeader" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CardShopModel.User" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <AssociationConnector Association="CardShopModel.FK_Carts_Card" ManuallyRouted="false" />
+        <AssociationConnector Association="CardShopModel.FK_TransactionDetail_Card" ManuallyRouted="false" />
         <AssociationConnector Association="CardShopModel.FK_Carts_Users__UserID_" ManuallyRouted="false" />
+        <AssociationConnector Association="CardShopModel.FK_TransactionDetail_TransactionHeader" ManuallyRouted="false" />
         <AssociationConnector Association="CardShopModel.FK_TransactionHeader_Users" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CardShopModel.TransactionDetail" Width="1.5" PointX="5.125" PointY="5.5" />
-        <AssociationConnector Association="CardShopModel.FK_TransactionDetail_Card" />
-        <AssociationConnector Association="CardShopModel.FK_TransactionDetail_TransactionHeader" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

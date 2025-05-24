@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CardShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CardShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Card">
           <Key>
             <PropertyRef Name="CardID" />
@@ -146,7 +146,8 @@
             <End Role="TransactionHeader" EntitySet="TransactionHeader" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CardShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -161,7 +162,7 @@
           <Property Name="CardType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isFoil" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Carts_Card" FromRole="Card" ToRole="Carts" />
-          <NavigationProperty Name="TransactionDetails" Relationship="CardShopModel.FK_TransactionDetail_Card" FromRole="Card" ToRole="TransactionDetail" />
+          <NavigationProperty Name="TransactionDetails" Relationship="Self.FK_TransactionDetail_Card" FromRole="Card" ToRole="TransactionDetail" />
         </EntityType>
         <EntityType Name="Cart">
           <Key>
@@ -174,6 +175,17 @@
           <NavigationProperty Name="Card" Relationship="Self.FK_Carts_Card" FromRole="Carts" ToRole="Card" />
           <NavigationProperty Name="User" Relationship="Self.FK_Carts_Users__UserID_" FromRole="Carts" ToRole="Users" />
         </EntityType>
+        <EntityType Name="TransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="CardID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Card" Relationship="Self.FK_TransactionDetail_Card" FromRole="TransactionDetail" ToRole="Card" />
+          <NavigationProperty Name="TransactionHeader" Relationship="Self.FK_TransactionDetail_TransactionHeader" FromRole="TransactionDetail" ToRole="TransactionHeader" />
+        </EntityType>
         <EntityType Name="TransactionHeader">
           <Key>
             <PropertyRef Name="TransactionID" />
@@ -182,8 +194,8 @@
           <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TransactionDetails" Relationship="Self.FK_TransactionDetail_TransactionHeader" FromRole="TransactionHeader" ToRole="TransactionDetail" />
           <NavigationProperty Name="User" Relationship="Self.FK_TransactionHeader_Users" FromRole="TransactionHeader" ToRole="Users" />
-          <NavigationProperty Name="TransactionDetails" Relationship="CardShopModel.FK_TransactionDetail_TransactionHeader" FromRole="TransactionHeader" ToRole="TransactionDetail" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -200,7 +212,9 @@
           <NavigationProperty Name="TransactionHeaders" Relationship="Self.FK_TransactionHeader_Users" FromRole="Users" ToRole="TransactionHeader" />
         </EntityType>
         <Association Name="FK_Carts_Card">
-          <End Role="Card" Type="Self.Card" Multiplicity="1" />
+          <End Role="Card" Type="Self.Card" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Card">
@@ -211,8 +225,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionDetail_Card">
+          <End Role="Card" Type="Self.Card" Multiplicity="1" />
+          <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Card">
+              <PropertyRef Name="CardID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="CardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Carts_Users__UserID_">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -220,6 +248,18 @@
             </Principal>
             <Dependent Role="Carts">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetail_TransactionHeader">
+          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="1" />
+          <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionHeader">
+              <PropertyRef Name="TransactionID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="TransactionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -235,74 +275,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CardShopEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CardShopEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cards" EntityType="Self.Card" />
           <EntitySet Name="Carts" EntityType="Self.Cart" />
+          <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetail" />
           <EntitySet Name="TransactionHeaders" EntityType="Self.TransactionHeader" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Carts_Card" Association="Self.FK_Carts_Card">
             <End Role="Card" EntitySet="Cards" />
             <End Role="Carts" EntitySet="Carts" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetail_Card" Association="Self.FK_TransactionDetail_Card">
+            <End Role="Card" EntitySet="Cards" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Carts_Users__UserID_" Association="Self.FK_Carts_Users__UserID_">
             <End Role="Users" EntitySet="Users" />
             <End Role="Carts" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetail_TransactionHeader" Association="Self.FK_TransactionDetail_TransactionHeader">
+            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionHeader_Users" Association="Self.FK_TransactionHeader_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
           </AssociationSet>
-          <EntitySet Name="TransactionDetails" EntityType="CardShopModel.TransactionDetail" />
-          <AssociationSet Name="FK_TransactionDetail_Card" Association="CardShopModel.FK_TransactionDetail_Card">
-            <End Role="Card" EntitySet="Cards" />
-            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransactionDetail_TransactionHeader" Association="CardShopModel.FK_TransactionDetail_TransactionHeader">
-            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
-            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="TransactionDetail">
-          <Key>
-            <PropertyRef Name="TransactionID" />
-            <PropertyRef Name="CardID" />
-          </Key>
-          <Property Name="TransactionID" Type="Int32" Nullable="false" />
-          <Property Name="CardID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Card" Relationship="CardShopModel.FK_TransactionDetail_Card" FromRole="TransactionDetail" ToRole="Card" />
-          <NavigationProperty Name="TransactionHeader" Relationship="CardShopModel.FK_TransactionDetail_TransactionHeader" FromRole="TransactionDetail" ToRole="TransactionHeader" />
-        </EntityType>
-        <Association Name="FK_TransactionDetail_Card">
-          <End Type="CardShopModel.Card" Role="Card" Multiplicity="1" />
-          <End Type="CardShopModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Card">
-              <PropertyRef Name="CardID" />
-            </Principal>
-            <Dependent Role="TransactionDetail">
-              <PropertyRef Name="CardID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransactionDetail_TransactionHeader">
-          <End Type="CardShopModel.TransactionHeader" Role="TransactionHeader" Multiplicity="1" />
-          <End Type="CardShopModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TransactionHeader">
-              <PropertyRef Name="TransactionID" />
-            </Principal>
-            <Dependent Role="TransactionDetail">
-              <PropertyRef Name="TransactionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CardShopModelStoreContainer" CdmEntityContainer="CardShopEntities">
+        <EntityContainerMapping StorageEntityContainer="CardShopModelStoreContainer" CdmEntityContainer="CardShopEntities1">
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="CardShopModel.Card">
               <MappingFragment StoreEntitySet="Card">
@@ -321,6 +326,15 @@
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="CardID" ColumnName="CardID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionDetails">
+            <EntityTypeMapping TypeName="CardShopModel.TransactionDetail">
+              <MappingFragment StoreEntitySet="TransactionDetail">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -345,15 +359,6 @@
                 <ScalarProperty Name="UserGender" ColumnName="UserGender" />
                 <ScalarProperty Name="UserDOB" ColumnName="UserDOB" />
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TransactionDetails">
-            <EntityTypeMapping TypeName="CardShopModel.TransactionDetail">
-              <MappingFragment StoreEntitySet="TransactionDetail">
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="CardID" ColumnName="CardID" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

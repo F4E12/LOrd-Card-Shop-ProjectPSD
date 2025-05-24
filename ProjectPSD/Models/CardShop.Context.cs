@@ -12,19 +12,19 @@ namespace ProjectPSD.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class CardShopEntities : DbContext
     {
         public CardShopEntities()
             : base("name=CardShopEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Card> Cards { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<TransactionHeader> TransactionHeaders { get; set; }

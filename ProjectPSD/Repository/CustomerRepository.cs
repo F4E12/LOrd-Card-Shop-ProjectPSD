@@ -10,7 +10,7 @@ namespace ProjectPSD.Repository
     {
         public static bool IsUsernameExist(string username)
         {
-            using (var db = new CardShopEntities())
+            using (var db = new CardShopEntities1())
             {
                 return db.Users.Any(u => u.UserName == username);
             }
@@ -18,7 +18,7 @@ namespace ProjectPSD.Repository
 
         public static bool IsEmailExist(string email)
         {
-            using (var db = new CardShopEntities())
+            using (var db = new CardShopEntities1())
             {
                 return db.Users.Any(u => u.UserEmail == email);
             }
@@ -31,7 +31,7 @@ namespace ProjectPSD.Repository
                 return false;
             }
 
-            using (var db = new CardShopEntities())
+            using (var db = new CardShopEntities1())
             {
                 db.Users.Add(newUser);
                 db.SaveChanges();
@@ -42,7 +42,7 @@ namespace ProjectPSD.Repository
 
         public static User Login(string username, string password)
         {
-            using (var db = new CardShopEntities())
+            using (var db = new CardShopEntities1())
             {
                 return db.Users.FirstOrDefault(u => u.UserName == username && u.UserPassword == password);
             }
@@ -50,7 +50,7 @@ namespace ProjectPSD.Repository
 
         public static User GetUserById(int id)
         {
-            using (var db = new CardShopEntities())
+            using (var db = new CardShopEntities1())
             {
                 return db.Users.FirstOrDefault(u => u.UserID == id);
             }
@@ -58,7 +58,7 @@ namespace ProjectPSD.Repository
 
         public static void UpdateUser(User user)
         {
-            using (var db = new CardShopEntities())
+            using (var db = new CardShopEntities1())
             {
                 var existingUser = db.Users.FirstOrDefault(u => u.UserID == user.UserID);
                 if (existingUser != null)

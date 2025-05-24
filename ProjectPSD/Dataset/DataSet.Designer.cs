@@ -620,7 +620,7 @@ namespace ProjectPSD.Dataset {
             
             private global::System.Data.DataColumn columnTransactionDate;
             
-            private global::System.Data.DataColumn columnCutomerID;
+            private global::System.Data.DataColumn columnCustomerID;
             
             private global::System.Data.DataColumn columnStatus;
             
@@ -677,9 +677,9 @@ namespace ProjectPSD.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CutomerIDColumn {
+            public global::System.Data.DataColumn CustomerIDColumn {
                 get {
-                    return this.columnCutomerID;
+                    return this.columnCustomerID;
                 }
             }
             
@@ -736,12 +736,12 @@ namespace ProjectPSD.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransactionHeaderRow AddTransactionHeaderRow(string TransactionID, string TransactionDate, string CutomerID, string Status, string GrandTotal) {
+            public TransactionHeaderRow AddTransactionHeaderRow(string TransactionID, string TransactionDate, string CustomerID, string Status, string GrandTotal) {
                 TransactionHeaderRow rowTransactionHeaderRow = ((TransactionHeaderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TransactionID,
                         TransactionDate,
-                        CutomerID,
+                        CustomerID,
                         Status,
                         GrandTotal};
                 rowTransactionHeaderRow.ItemArray = columnValuesArray;
@@ -775,7 +775,7 @@ namespace ProjectPSD.Dataset {
             internal void InitVars() {
                 this.columnTransactionID = base.Columns["TransactionID"];
                 this.columnTransactionDate = base.Columns["TransactionDate"];
-                this.columnCutomerID = base.Columns["CutomerID"];
+                this.columnCustomerID = base.Columns["CustomerID"];
                 this.columnStatus = base.Columns["Status"];
                 this.columnGrandTotal = base.Columns["GrandTotal"];
             }
@@ -787,8 +787,8 @@ namespace ProjectPSD.Dataset {
                 base.Columns.Add(this.columnTransactionID);
                 this.columnTransactionDate = new global::System.Data.DataColumn("TransactionDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTransactionDate);
-                this.columnCutomerID = new global::System.Data.DataColumn("CutomerID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCutomerID);
+                this.columnCustomerID = new global::System.Data.DataColumn("CustomerID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerID);
                 this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatus);
                 this.columnGrandTotal = new global::System.Data.DataColumn("GrandTotal", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1104,17 +1104,17 @@ namespace ProjectPSD.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string CutomerID {
+            public string CustomerID {
                 get {
                     try {
-                        return ((string)(this[this.tableTransactionHeader.CutomerIDColumn]));
+                        return ((string)(this[this.tableTransactionHeader.CustomerIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CutomerID\' in table \'TransactionHeader\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerID\' in table \'TransactionHeader\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTransactionHeader.CutomerIDColumn] = value;
+                    this[this.tableTransactionHeader.CustomerIDColumn] = value;
                 }
             }
             
@@ -1164,14 +1164,14 @@ namespace ProjectPSD.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsCutomerIDNull() {
-                return this.IsNull(this.tableTransactionHeader.CutomerIDColumn);
+            public bool IsCustomerIDNull() {
+                return this.IsNull(this.tableTransactionHeader.CustomerIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetCutomerIDNull() {
-                this[this.tableTransactionHeader.CutomerIDColumn] = global::System.Convert.DBNull;
+            public void SetCustomerIDNull() {
+                this[this.tableTransactionHeader.CustomerIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
