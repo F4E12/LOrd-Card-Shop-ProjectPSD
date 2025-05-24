@@ -57,7 +57,17 @@ namespace ProjectPSD.Views
                     if (Session["UserID"] != null)
                     {
                         int userID = Convert.ToInt32(Session["UserID"]);
-                        string message = CartController.AddCardToCart(cardID, userID);
+
+                        GridViewRow row = ((Button)e.CommandSource).NamingContainer as GridViewRow;
+                        TextBox txtQuantity = row.FindControl("txtQuantity") as TextBox;
+
+                        int quantity = 1;
+                        if (txtQuantity != null && int.TryParse(txtQuantity.Text, out int parsedQty))
+                        {
+                            quantity = parsedQty;
+                        }
+
+                        string message = CartController.AddCardToCart(cardID, userID, quantity);
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('{message}');", true);
                     }
                     Response.Redirect("OrderCard.aspx");

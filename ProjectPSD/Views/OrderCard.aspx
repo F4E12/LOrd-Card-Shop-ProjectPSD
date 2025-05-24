@@ -13,6 +13,7 @@
             <asp:TemplateField HeaderText="Actions">
                 <ItemTemplate>
                     <asp:Button ID="btnDetail" runat="server" Text="Detail" CommandName="ViewDetail" CommandArgument='<%# Eval("CardID") %>' />
+                    <asp:TextBox ID="txtQuantity" runat="server" Width="50px" Text="1"></asp:TextBox>
                     <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CommandName="AddToCart" CommandArgument='<%# Eval("CardID") %>' />
                 </ItemTemplate>
             </asp:TemplateField>

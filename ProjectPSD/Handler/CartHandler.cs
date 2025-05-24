@@ -10,19 +10,19 @@ namespace ProjectPSD.Handler
 {
     public class CartHandler
     {
-        public static string AddToCart(int cardId, int userId)
+        public static string AddToCart(int cardId, int userId, int quantity)
         {
             Cart existingCart = CartRepository.GetCartByCardIdAndUserId(cardId, userId);
 
             if(existingCart != null)
             {
-                CartRepository.AddCartQuantitiy(existingCart.CartID);
+                CartRepository.AddCartQuantitiy(existingCart.CartID, quantity);
                 return "Successfully updated card quantity!";
             }
             else
             {
                 //create new cart to add new card
-                Cart newCart = CartFactory.CreateCart(CartRepository.GenerateNewCartID(), cardId, userId, 1);
+                Cart newCart = CartFactory.CreateCart(CartRepository.GenerateNewCartID(), cardId, userId, quantity);
                 CartRepository.InsertCart(newCart);
                 return "Successfully added new card to cart!";
             }
