@@ -25,6 +25,8 @@
 <body>
     <form id="form1" runat="server">
         <asp:PlaceHolder ID="NavbarPH" runat="server"></asp:PlaceHolder>
+        <asp:TextBox ID="FilterTb" runat="server"></asp:TextBox>
+        <asp:Button ID="SearchBtn" runat="server" Text="Search" OnClick="SearchBtn_Click"/>
         <br />
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </form>

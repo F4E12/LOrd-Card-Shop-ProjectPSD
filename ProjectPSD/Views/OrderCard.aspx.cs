@@ -28,7 +28,17 @@ namespace ProjectPSD.Views
 
         protected void refreshPage()
         {
+            string filter = Request.QueryString["filter"];
             List<Card> cardList = CardRepository.GetAllCards();
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                cardList = (from card in cardList
+                            where card.CardName.Contains(filter)
+                         select card).ToList();
+
+            }
+
             gvOrderCard.DataSource = cardList;
             gvOrderCard.DataBind();
         }

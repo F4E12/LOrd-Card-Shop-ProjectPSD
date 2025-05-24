@@ -11,7 +11,7 @@ namespace ProjectPSD.Repository
     public class CardRepository
     {
         //define database
-        protected static CardShopEntities db = new CardShopEntities();
+        private static CardShopEntities db = new CardShopEntities();
 
         public static List<Card> GetAllCards()
         {

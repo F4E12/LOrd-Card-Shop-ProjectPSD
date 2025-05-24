@@ -75,5 +75,20 @@ namespace ProjectPSD.Views
                 "));
             }
         }
+
+        protected void SearchBtn_Click(object sender, EventArgs e)
+        {
+            User currentUser = (User)Session["User"];
+            string currentPage = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
+            if (currentUser.UserRole == "Customer")
+            {
+                string searchParam = FilterTb.Text;
+                Response.Redirect("OrderCard.aspx?filter=" + searchParam);
+            }else if(currentUser.UserRole =="Admin")
+            {
+                string searchParam = FilterTb.Text;
+                Response.Redirect("ManageCard.aspx?filter=" + searchParam);
+            }
+        }
     }
 }
