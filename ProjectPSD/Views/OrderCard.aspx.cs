@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -30,7 +31,7 @@ namespace ProjectPSD.Views
         {
             string filter = Request.QueryString["filter"];
             List<Card> cardList = CardRepository.GetAllCards();
-
+            
             if (!string.IsNullOrEmpty(filter))
             {
                 cardList = (from card in cardList
