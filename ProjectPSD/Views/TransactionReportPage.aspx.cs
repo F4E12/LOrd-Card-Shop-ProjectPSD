@@ -8,16 +8,21 @@ using System.Web.UI.WebControls;
 using ProjectPSD.Controller;
 using ProjectPSD.Models;
 using ProjectPSD.Dataset;
+using ProjectPSD.Report;
 
 namespace ProjectPSD.Views
 {
-    public partial class TransactionReport : System.Web.UI.Page
+    public partial class TransactionReportPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TransactionReport report = new TransactionReport();
-            ReportViewer.ReportSource = report;
-            DataSet dataSet = GetData(TransactionController.GetallTransactionHeader());
+            if (!IsPostBack)
+            {
+                TransactionReport report = new TransactionReport();
+                ReportViewer.ReportSource = report;
+                DataSet dataSet = GetData(TransactionController.GetallTransactionHeader());
+                report.SetDataSource(dataSet);
+            }
         }
 
         private DataSet GetData(List<TransactionHeader> Transactions)

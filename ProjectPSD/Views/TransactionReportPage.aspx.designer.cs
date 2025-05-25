@@ -11,7 +11,7 @@ namespace ProjectPSD.Views
 {
 
 
-    public partial class TransactionReport
+    public partial class TransactionReportPage
     {
 
         /// <summary>

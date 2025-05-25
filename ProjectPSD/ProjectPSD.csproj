@@ -113,7 +113,7 @@
     <Content Include="Views\Register.aspx" />
     <Content Include="Views\TransactionDetail.aspx" />
     <Content Include="Views\TransactionHistory.aspx" />
-    <Content Include="Views\TransactionReport.aspx" />
+    <Content Include="Views\TransactionReportPage.aspx" />
     <Content Include="Views\UpdatePage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -282,12 +282,12 @@
     <Compile Include="Views\TransactionHistory.aspx.designer.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransactionReport.aspx.cs">
-      <DependentUpon>TransactionReport.aspx</DependentUpon>
+    <Compile Include="Views\TransactionReportPage.aspx.cs">
+      <DependentUpon>TransactionReportPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\TransactionReport.aspx.designer.cs">
-      <DependentUpon>TransactionReport.aspx</DependentUpon>
+    <Compile Include="Views\TransactionReportPage.aspx.designer.cs">
+      <DependentUpon>TransactionReportPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdatePage.aspx.cs">
       <DependentUpon>UpdatePage.aspx</DependentUpon>
