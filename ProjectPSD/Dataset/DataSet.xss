@@ -7,18 +7,18 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="0" ViewPortY="0" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:TransactionDetail" ZOrder="3" X="586" Y="193" Height="125" Width="194" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="28" SplitterPosition="121" />
-    <Shape ID="DesignTable:TransactionHeader" ZOrder="2" X="225" Y="169" Height="148" Width="204" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="28" SplitterPosition="144" />
+    <Shape ID="DesignTable:TransactionHeader" ZOrder="2" X="224" Y="170" Height="148" Width="204" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="28" SplitterPosition="144" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:TransactionHeader_TransactionDetail" ZOrder="1" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>429</X>
-          <Y>222</Y>
+          <X>428</X>
+          <Y>223</Y>
         </Point>
         <Point>
           <X>586</X>
-          <Y>222</Y>
+          <Y>223</Y>
         </Point>
       </RoutePoints>
     </Connector>

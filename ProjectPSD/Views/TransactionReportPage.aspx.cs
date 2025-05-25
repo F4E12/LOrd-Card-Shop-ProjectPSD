@@ -52,7 +52,6 @@ namespace ProjectPSD.Views
             }
             return data;
 
-
         }
 
         private int getGrandTotal(TransactionHeader t)

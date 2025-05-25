@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.EnterpriseServices.Internal;
 using System.Linq;
 using System.Web;
+using System.Web.Management;
 
 namespace ProjectPSD.Repository
 {
@@ -60,6 +61,11 @@ namespace ProjectPSD.Repository
         public static List<TransactionHeader> GetTransactionHeaderByUserId(int userId)
         {
             return db.TransactionHeaders.Where(th => th.CustomerID == userId).ToList();
+        }
+        public static List<TransactionHeader> GetTransactions()
+        {
+            CardShopEntities db  = new CardShopEntities();
+            return db.TransactionHeaders.ToList();
         }
 
     }
