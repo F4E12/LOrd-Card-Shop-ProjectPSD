@@ -35,11 +35,11 @@ namespace ProjectPSD.Repository
             return;
         }
 
-        public static Cart AddCartQuantitiy(int cartId)
+        public static Cart AddCartQuantitiy(int cartId, int quantity)
         {
             Cart cart = db.Carts.Find(cartId);
 
-            cart.Quantity++;
+            cart.Quantity += quantity;
             db.SaveChanges();
 
             return cart;

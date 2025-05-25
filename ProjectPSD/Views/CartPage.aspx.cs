@@ -30,22 +30,40 @@ namespace ProjectPSD.Views
             int userId = Convert.ToInt32(Session["UserID"]);
             var cartData = CartController.GetAllCartItems(userId);
 
-            var displayData = cartData.Select(c => new
+            if(cartData !=null && cartData.Any())
             {
-                c.Card.CardName,
-                c.Card.CardPrice,
-                c.Card.CardType,
-                c.Card.CardDesc,
-                c.Quantity
-            }).ToList();
+                var displayData = cartData.Select(c => new
+                {
+                    c.Card.CardName,
+                    c.Card.CardPrice,
+                    c.Card.CardType,
+                    c.Card.CardDesc,
+                    c.Quantity
+                }).ToList();
 
-            CartGv.DataSource = displayData;
-            CartGv.DataBind();
+                CartGv.DataSource = displayData;
+                CartGv.DataBind();
+            }
+            else
+            {
+                alertMsg.Text = "Your cart is empty!";
+                CartGv.DataSource = null;
+                CartGv.DataBind();
+            }
+
         }
 
         protected void CheckOutBtn_Click1(object sender, EventArgs e)
         {
             Response.Redirect("Checkout.aspx");
+        }
+
+        protected void clearCartBtn_Click(object sender, EventArgs e)
+        {
+            int userId = Convert.ToInt32(Session["UserID"]);
+            TransactionController.HandleCheckOut(userId);
+            CartController.Checkout(userId);
+            LoadCart();
         }
     }
 }

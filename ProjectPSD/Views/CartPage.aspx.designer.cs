@@ -15,6 +15,15 @@ namespace ProjectPSD.Views
     {
 
         /// <summary>
+        /// alertMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label alertMsg;
+
+        /// <summary>
         /// CartGv control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace ProjectPSD.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView CartGv;
+
+        /// <summary>
+        /// clearCartBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button clearCartBtn;
 
         /// <summary>
         /// CheckOutBtn control.

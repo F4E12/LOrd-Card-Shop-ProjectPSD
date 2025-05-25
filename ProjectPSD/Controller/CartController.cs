@@ -10,9 +10,9 @@ namespace ProjectPSD.Controller
 {
     public class CartController
     {
-        public static string AddCardToCart(int cardId, int userId)
+        public static string AddCardToCart(int cardId, int userId, int quantity)
         {
-            return CartHandler.AddToCart(cardId, userId);
+            return CartHandler.AddToCart(cardId, userId, quantity);
         }
 
         public static List<Cart> GetAllCartItems(int userId)
