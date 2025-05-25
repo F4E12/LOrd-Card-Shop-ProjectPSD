@@ -96,6 +96,24 @@ namespace ProjectPSD.Views
         protected global::System.Web.UI.WebControls.Button OrderQueueBtn;
 
         /// <summary>
+        /// SearchTb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchTb;
+
+        /// <summary>
+        /// SearchBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchBtn;
+
+        /// <summary>
         /// ProfileBtn control.
         /// </summary>
         /// <remarks>

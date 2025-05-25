@@ -59,6 +59,8 @@
                 <asp:Button ID="OrderQueueBtn" runat="server" Text="Order Queue" CssClass="NavButton" OnClick="OrderQueue_Click" Visible="false" />
             </div>
             <div class="right-section">
+                <asp:TextBox ID="SearchTb" runat="server"></asp:TextBox>
+                <asp:Button ID="SearchBtn" runat="server" Text="Search"  OnClick="SearchBtn_Click"/>
                 <asp:Button ID="ProfileBtn" runat="server" Text="Profile" CssClass="NavButton" OnClick="Profile_Click" Visible="false" />
                 <asp:Button ID="LoginBtn" runat="server" Text="Login" CssClass="NavButton" OnClick="Login_Click" Visible="false" />
                 <asp:Button ID="RegisterBtn" runat="server" Text="Register" CssClass="NavButton" OnClick="Register_Click" Visible="false" />

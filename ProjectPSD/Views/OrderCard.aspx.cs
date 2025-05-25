@@ -30,7 +30,7 @@ namespace ProjectPSD.Views
         protected void refreshPage()
         {
             string filter = Request.QueryString["filter"];
-            List<Card> cardList = CardRepository.GetAllCards();
+            List<Card> cardList = CardController.GetAllCard();
             
             if (!string.IsNullOrEmpty(filter))
             {

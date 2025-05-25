@@ -1,5 +1,6 @@
 ﻿using ProjectPSD.Controller;
 using ProjectPSD.Models;
+using ProjectPSD.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,17 @@ namespace ProjectPSD.Views
     {
         public void RefreshGrid()
         {
-            List<Card> cards = CardController.GetAllCard();
-            ManageCardGV.DataSource = cards;
+            string filter = Request.QueryString["filter"];
+            List<Card> cardList = CardController.GetAllCard();
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                cardList = (from card in cardList
+                            where card.CardName.Contains(filter)
+                            select card).ToList();
+
+            }
+            ManageCardGV.DataSource = cardList;
             ManageCardGV.DataBind();
         }
         protected void Page_Load(object sender, EventArgs e)
