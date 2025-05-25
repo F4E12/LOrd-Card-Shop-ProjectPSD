@@ -12,6 +12,23 @@ namespace ProjectPSD.Views
 {
     public partial class ManageCard : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            var user = Session["User"];
+            var role = Session["Role"]?.ToString().ToLower();
+
+            if (user == null || role != "admin")
+            {
+                Response.Redirect("Login.aspx");
+                return;
+            }
+
+            if (!IsPostBack)
+            {
+                RefreshGrid();
+            }
+        }
+
         public void RefreshGrid()
         {
             string filter = Request.QueryString["filter"];
@@ -19,43 +36,32 @@ namespace ProjectPSD.Views
 
             if (!string.IsNullOrEmpty(filter))
             {
-                cardList = (from card in cardList
-                            where card.CardName.Contains(filter)
-                            select card).ToList();
-
+                cardList = cardList
+                    .Where(card => card.CardName.IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .ToList();
             }
+
             ManageCardGV.DataSource = cardList;
             ManageCardGV.DataBind();
-        }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                RefreshGrid();
-            }
-
-        }
-
-        protected void ManageCardGV_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         protected void ManageCardGV_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             GridViewRow row = ManageCardGV.Rows[e.RowIndex];
-            int id = int.Parse(row.Cells[0].Text);
-            string message = CardController.DeleteCardById(id);
+            int cardId = int.Parse(row.Cells[0].Text);
+
+            string message = CardController.DeleteCardById(cardId);
             MessageLbl.Text = message;
+
             RefreshGrid();
         }
 
         protected void ManageCardGV_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewRow row = ManageCardGV.Rows[e.NewEditIndex];
-            int id = int.Parse(row.Cells[0].Text);
-            Response.Redirect("UpdatePage.aspx?id=" + id);
-            RefreshGrid();
+            int cardId = int.Parse(row.Cells[0].Text);
+
+            Response.Redirect("UpdatePage.aspx?id=" + cardId);
         }
 
         protected void InsertBtn_Click(object sender, EventArgs e)

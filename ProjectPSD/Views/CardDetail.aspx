@@ -1,30 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDetail.aspx.cs" Inherits="ProjectPSD.Views.CardDetail" %>
+﻿<%@ Page Title="Card Detail" Language="C#" MasterPageFile="~/Views/Navbar.Master" AutoEventWireup="true" CodeBehind="CardDetail.aspx.cs" Inherits="ProjectPSD.Views.CardDetail" %>
 
-<!DOCTYPE html>
+<asp:Content ID="HeadContent" ContentPlaceHolderID="TitleContent" runat="server">
+    Card Detail
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:PlaceHolder ID="NavbarPH" runat="server"></asp:PlaceHolder>
-            <h1>Card Detail Page</h1>
-            <asp:Label ID="NameDisplay" runat="server" Text="Name: "></asp:Label>
-            <asp:Label ID="nameLbl" runat="server"></asp:Label><br />
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Card Detail Page</h1>
+    <div style="margin-top:20px">
+        <asp:Label ID="NameDisplay" runat="server" Text="Name: " Font-Bold="true" />
+        <asp:Label ID="nameLbl" runat="server" /><br /><br />
 
-            <asp:Label ID="PriceDisplay" runat="server" Text="Price: "></asp:Label>
-            <asp:Label ID="priceLbl" runat="server"></asp:Label><br />
+        <asp:Label ID="PriceDisplay" runat="server" Text="Price: " Font-Bold="true" />
+        <asp:Label ID="priceLbl" runat="server" /><br /><br />
 
-            <asp:Label ID="TypeDisplay" runat="server" Text="Type: "></asp:Label>
-            <asp:Label ID="cardTypeLbl" runat="server"></asp:Label><br />
+        <asp:Label ID="TypeDisplay" runat="server" Text="Type: " Font-Bold="true" />
+        <asp:Label ID="cardTypeLbl" runat="server" /><br /><br />
 
-            <asp:Label ID="DescDisplay" runat="server" Text="Description: "></asp:Label>
-            <asp:Label ID="cardDescLbl" runat="server"></asp:Label><br />
+        <asp:Label ID="DescDisplay" runat="server" Text="Description: " Font-Bold="true" />
+        <asp:Label ID="cardDescLbl" runat="server" /><br /><br />
 
-            <asp:Button ID="backBtn" runat="server" Text="Back" OnClick="Button1_Click"/>
-        </div>
-    </form>
-</body>
-</html>
+        <asp:Button ID="backBtn" runat="server" Text="Back" OnClick="backBtn_Click" CssClass="btn btn-primary" />
+    </div>
+</asp:Content>
