@@ -15,6 +15,18 @@ namespace ProjectPSD.Views
         {
             if (!IsPostBack)
             {
+                if (Session["UserID"] == null || Session["User"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                    return;
+                }
+
+                if (Session["Role"]?.ToString() != "Admin")
+                {
+                    Response.Redirect("Homepage.aspx");
+                    return;
+                }
+
                 int id = int.Parse(Request.QueryString["id"]);
                 Card card = CardController.GetCardById(id);
 

@@ -11,6 +11,18 @@ namespace ProjectPSD.Views
         {
             if (!IsPostBack)
             {
+                if (Session["UserID"] == null || Session["User"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                    return;
+                }
+
+                if (Session["Role"]?.ToString() != "Customer")
+                {
+                    Response.Redirect("Homepage.aspx");
+                    return;
+                }
+
                 int transactionId = 0;
 
                 if (Request.QueryString["id"] != null)

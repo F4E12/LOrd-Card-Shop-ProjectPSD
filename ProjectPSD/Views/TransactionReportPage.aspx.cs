@@ -18,6 +18,16 @@ namespace ProjectPSD.Views
         {
             if (!IsPostBack)
             {
+                if (Session["UserID"] == null || Session["User"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                    return;
+                }
+                if (Session["Role"]?.ToString() != "Admin")
+                {
+                    Response.Redirect("Homepage.aspx");
+                    return;
+                }
                 TransactionReport report = new TransactionReport();
                 ReportViewer.ReportSource = report;
                 DataSet dataSet = GetData(TransactionController.GetallTransactionHeader());

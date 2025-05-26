@@ -19,6 +19,12 @@ namespace ProjectPSD.Views
                 return;
             }
 
+            if(Session["Role"]?.ToString() != "Customer")
+            {
+                Response.Redirect("Homepage.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 string selectedCardID = Request.QueryString["CardID"];

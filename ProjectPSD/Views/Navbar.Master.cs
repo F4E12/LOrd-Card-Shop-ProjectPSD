@@ -103,7 +103,7 @@ namespace ProjectPSD.Views
                     TransactionHistoryBtn.CssClass += " ActiveNav"; break;
                 case "transactionreport.aspx":
                     TransactionReportBtn.CssClass += " ActiveNav"; break;
-                case "orderqueue.aspx":
+                case "handletransaction.aspx":
                     OrderQueueBtn.CssClass += " ActiveNav"; break;
                 case "profile.aspx":
                     ProfileBtn.CssClass += " ActiveNav"; break;

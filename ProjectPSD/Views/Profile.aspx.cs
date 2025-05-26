@@ -23,6 +23,12 @@ namespace ProjectPSD.Views
                     return;
                 }
 
+                if (Session["Role"]?.ToString() != "Customer" && Session["Role"]?.ToString() != "Admin")
+                {
+                    Response.Redirect("Homepage.aspx");
+                    return;
+                }
+
                 for (int year = DateTime.Now.Year; year >= 1950; year--)
                 {
                     ddlYear.Items.Add(year.ToString());

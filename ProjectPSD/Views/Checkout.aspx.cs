@@ -22,6 +22,12 @@ namespace ProjectPSD.Views
                     return;
                 }
 
+                if (Session["Role"]?.ToString() != "Customer")
+                {
+                    Response.Redirect("Homepage.aspx");
+                    return;
+                }
+
                 LoadCart();
             }
         }
