@@ -17,7 +17,7 @@ namespace ProjectPSD.Views
                     return;
                 }
 
-                if (Session["Role"]?.ToString() != "Customer")
+                if (Session["Role"]?.ToString() != "Customer" && Session["Role"]?.ToString() != "Admin")
                 {
                     Response.Redirect("Homepage.aspx");
                     return;
