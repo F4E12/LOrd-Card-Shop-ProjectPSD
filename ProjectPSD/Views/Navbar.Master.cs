@@ -137,7 +137,7 @@ namespace ProjectPSD.Views
         protected void Cart_Click(object sender, EventArgs e) => Response.Redirect("CartPage.aspx");
         protected void TransactionHistory_Click(object sender, EventArgs e) => Response.Redirect("TransactionHistory.aspx");
         protected void TransactionReport_Click(object sender, EventArgs e) => Response.Redirect("TransactionReportPage.aspx");
-        protected void OrderQueue_Click(object sender, EventArgs e) => Response.Redirect("OrderQueue.aspx");
+        protected void OrderQueue_Click(object sender, EventArgs e) => Response.Redirect("HandleTransaction.aspx");
         protected void Profile_Click(object sender, EventArgs e) => Response.Redirect("Profile.aspx");
         protected void Login_Click(object sender, EventArgs e) => Response.Redirect("Login.aspx");
         protected void Register_Click(object sender, EventArgs e) => Response.Redirect("Register.aspx");

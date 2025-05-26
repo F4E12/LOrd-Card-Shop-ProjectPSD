@@ -26,7 +26,7 @@ namespace ProjectPSD.Views
             string role = Session["Role"]?.ToString();
             string userIdStr = Session["UserID"]?.ToString();
 
-            if (role == "admin")
+            if (role == "Admin")
             {
                 TransactionHistoryGV.DataSource = TransactionController.GetallTransactionHeader();
             }
@@ -46,7 +46,7 @@ namespace ProjectPSD.Views
                 string transactionId = e.CommandArgument.ToString();
                 string role = Session["Role"]?.ToString();
 
-                if (role == "admin")
+                if (role == "Admin")
                 {
                     Response.Redirect("TransactionDetail.aspx?id=" + transactionId);
                 }

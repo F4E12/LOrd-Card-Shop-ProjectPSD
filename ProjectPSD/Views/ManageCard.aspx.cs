@@ -15,9 +15,9 @@ namespace ProjectPSD.Views
         protected void Page_Load(object sender, EventArgs e)
         {
             var user = Session["User"];
-            var role = Session["Role"]?.ToString().ToLower();
+            var role = Session["Role"]?.ToString();
 
-            if (user == null || role != "admin")
+            if (user == null || role != "Admin")
             {
                 Response.Redirect("Login.aspx");
                 return;

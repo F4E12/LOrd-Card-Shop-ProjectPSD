@@ -16,7 +16,7 @@ namespace ProjectPSD.Views
         {
             if (Session["User"] != null)
             {
-                Response.Redirect("~/Views/Homepage.aspx");
+                Response.Redirect("~/Views/Homepage.aspx", true);
                 return;
             }
 
@@ -29,11 +29,6 @@ namespace ProjectPSD.Views
                     PasswordTb.Attributes["value"] = cookie.Values["Password"];
                     RememberMeCb.Checked = true;
                 }
-            }
-
-            if (Session["User"] == null && !Request.Url.AbsolutePath.EndsWith("Login.aspx"))
-            {
-                Response.Redirect("~/Views/Login.aspx");
             }
         }
 
